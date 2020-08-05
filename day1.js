@@ -1,8 +1,8 @@
 //store the input in an array
 //iterate over each
 //each mass amount should be divided by 3, rounded down, and subtracted from by 2
-//add each fuel per mass amount to each other for total fuel amount 
-//reduce? 
+//add each fuel per mass amount to each other for total fuel amount
+//reduce?
 
 const moduleMass = [
 85364,
@@ -107,8 +107,76 @@ const moduleMass = [
 126797
 ]
 
-const totalFuel = moduleMass.reduce(function(sum, mass) {
-  return (Math.floor((mass / 3)) - 2) + sum
-}, 0)
+//1st try, working
+// const totalFuel = moduleMass.reduce(function(sum, mass) {
+//   let total = (Math.floor((mass / 3)) - 2)
+//   return total + sum
+// }, 0)
 
-console.log(totalFuel)
+// console.log(totalFuel)
+
+//refactor, working
+// const cb = function(sum, mass) {
+//   let total = (Math.floor((mass / 3)) - 2)
+//   return total + sum
+// }
+
+// function totalFuel(array, cb) {
+//   let moduleTotal = array.reduce(cb, 0)
+//   return moduleTotal
+// }
+
+// console.log(totalFuel(moduleMass, cb))
+
+//incorporates part 2 of problem, working
+// function fuelCounter(array) {
+//   let totalFuel = 0
+//   initFuelPerMod = []
+
+//   for (i of array) {
+//     let modFuel = (Math.floor((i / 3)) - 2)
+//     totalFuel += modFuel
+//     initFuelPerMod.push(modFuel)
+//   }
+
+//   for (i of initFuelPerMod) {
+//     let fuelPerFuel = (Math.floor((i / 3)) - 2)
+//     if (fuelPerFuel > 0) {
+//       totalFuel += fuelPerFuel
+//       initFuelPerMod.push(fuelPerFuel)
+//     }
+//   }
+//   return totalFuel
+// }
+
+//lol another refactor, full problem, working
+// function fuelCounter(array) {
+//   let totalFuel = 0
+
+//   for (i of array) {
+//     let fuelPerMod = (Math.floor((i / 3)) - 2)
+//     if (fuelPerMod > 0) {
+//       totalFuel += fuelPerMod
+//       array.push(fuelPerMod)
+//     }
+//   }
+//   return totalFuel
+// }
+
+//yet another refactor, trying to make reduce work for full problem, currently not working
+function fuelCounter(array, cb) {
+  let totalFuel = 0
+  let allFuel = array.reduce(cb, 0) 
+  if (allFuel > 0) {
+    totalFuel += allFuel
+    array.push(allFuel)
+  }
+  return allFuel
+}
+
+function cb(totalFuel, i) {
+  let fuelPerMod = (Math.floor((i / 3)) - 2)
+  return fuelPerMod
+}
+
+console.log(fuelCounter(moduleMass))
