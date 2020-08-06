@@ -164,18 +164,18 @@ const moduleMass = [
 // }
 
 //yet another refactor, trying to make reduce work for full problem, currently not working
-function fuelCounter(array, cb) {
+function fuelCounter(arr) {
   let totalFuel = 0
-  let allFuel = array.reduce(cb, 0) 
+  let allFuel = arr.reduce(cb, totalFuel) 
   if (allFuel > 0) {
     totalFuel += allFuel
-    array.push(allFuel)
+    arr.push(allFuel)
   }
-  return allFuel
+  return totalFuel
 }
 
-function cb(totalFuel, i) {
-  let fuelPerMod = (Math.floor((i / 3)) - 2)
+function cb(totalFuel, fuel) {
+  let fuelPerMod = (Math.floor((fuel / 3)) - 2)
   return fuelPerMod
 }
 
