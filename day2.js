@@ -44,37 +44,28 @@ const intCodes = [
   2,14,0,0
 ]
 
-// function preRun(arr) {
-//   arr[1] = 12
-//   arr[2] = 2
-//   return arr
-// }
-
-
-function gravityAssist(arr) {
-  //preRun(arr)
-  for (i of intCodes) {
-    if (arr[i] == 1) {
-      console.log(i, "hi")
-    var newValue = arr[arr[i+1]] + arr[arr[i+2]]
-    arr[i+3] == newValue 
-    console.log(newValue, "bye")
-  }
-  console.log(newValue, "same")
-  //return arr[i+3]
+function preRun(arr) {
+  arr[1] = 12
+  arr[2] = 2
+  return arr
 }
-
-  // if (arr[0] == 1) {
-  //   let newValue = arr[arr[1]] + arr[arr[2]]
-  //   arr[3] == newValue 
-  // }
-  // return arr[3]
-
-
-
-
-  ///if opcode == 1, find the values of the two subsquent values positions, array[next] and array[next + 1] and then add, and place new value in the position of the following value 
-//step forward 4 positions when complete
-} 
+//part 1, working
+function gravityAssist(arr) {
+  preRun(arr)
+  let i = 0
+  while (i < arr.length) {
+    if (arr[i] == 1) {
+      let addedValue = arr[arr[i+1]] + arr[arr[i+2]]
+      arr[arr[i+3]] = addedValue 
+    } else if (arr[i] == 2) {
+        let multipliedValue = arr[arr[i+1]] * arr[arr[i+2]]
+        arr[arr[i+3]] = multipliedValue 
+      } else if (arr[i] == 99) {
+        return arr
+      }
+      i += 4
+    }
+  return arr 
+}
 
 console.log(gravityAssist(intCodes))
