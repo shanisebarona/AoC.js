@@ -50,17 +50,39 @@ function preRun(arr) {
   return arr
 }
 //part 1, working
+// function gravityAssist(arr) {
+//   preRun(arr)
+//   let i = 0
+//   while (i < arr.length) {
+//     if (arr[i] == 1) {
+//       let addedValue = arr[arr[i+1]] + arr[arr[i+2]]
+//       arr[arr[i+3]] = addedValue 
+//     } else if (arr[i] == 2) {
+//         let multipliedValue = arr[arr[i+1]] * arr[arr[i+2]]
+//         arr[arr[i+3]] = multipliedValue 
+//       } else if (arr[i] == 99) {
+//         return arr
+//       }
+//       i += 4
+//     }
+//   return arr 
+// }
+
+//part 1, refactor, working!
 function gravityAssist(arr) {
   preRun(arr)
   let i = 0
+
   while (i < arr.length) {
+    pos_1 = arr[i + 1]
+    pos_2 = arr[i + 2]
+    pos_3 = arr[i + 3]
+
     if (arr[i] == 1) {
-      let addedValue = arr[arr[i+1]] + arr[arr[i+2]]
-      arr[arr[i+3]] = addedValue 
+      arr[pos_3] =  arr[pos_1] + arr[pos_2]
     } else if (arr[i] == 2) {
-        let multipliedValue = arr[arr[i+1]] * arr[arr[i+2]]
-        arr[arr[i+3]] = multipliedValue 
-      } else if (arr[i] == 99) {
+        arr[pos_3] =  arr[pos_1] * arr[pos_2]
+      } else {
         return arr
       }
       i += 4
